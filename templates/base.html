@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% load static %}
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz test {% block title %}{% endblock title %} </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="shadow navbar navbar-expand-lg bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="{% url 'index' %}">Quiz App</a>
+          <button class="navbar-toggler float-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'new_test' %}">Add Test</a>
+              </li>
+              {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <a href="#" class="nav-link">My Profile</a>
+                </li>
+              {% endif %}
+              
+            </ul>
+            <ul class="btn-group" style="list-style: none;">
+              {% if request.user.is_authenticated %}
+              <li class="nav-item"><a href="{% url 'logout' %}" class="nav-link btn btn-danger text-light">Logout</a></li>
+              {% else %}
+              <li class="nav-item"><a href="{% url 'login' %}" class="nav-link btn btn-primary text-light">Login</a></li>
+              <li class="nav-item"><a href="{% url 'signup' %}" class="nav-link btn btn-primary text-light">SignUp</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    <div class="container">
+        {% block content %}
+            
+        {% endblock content %}
+    </div>
+
+    <div class="footer m-4 mb-3">
+        <center class="text-muted">Qo'shshiyev Abror | 2023</center>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
